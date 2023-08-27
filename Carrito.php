@@ -43,11 +43,11 @@
     }
     if(isset($_POST['Prod2'])){
         $cont2 = $cont2 + 1;
-        echo("Vas a comprar {$cont2} unidades del producto 1");
+        echo("Vas a comprar {$cont2} unidades del producto 2");
     }
     if(isset($_POST['Prod3'])){
         $cont3 = $cont3 + 1;
-        echo("Vas a comprar {$cont3} unidades del producto 1");
+        echo("Vas a comprar {$cont3} unidades del producto 3");
     }
     if(isset($_POST['sumbit'])){
         $resultado = ($cont1*$cost1) + ($cont2*$cost2) + ($cont3*$cost3);
