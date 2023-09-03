@@ -13,18 +13,21 @@
     <h1>El precio del producto 1 es 1 dolar</h1>
     <br>
     <input type="submit" name="Prod1" value="Añadir al carrito">
+    <input type="submit" name="DELProd1" value="Quitar del carrito">
     <br>
     <h2>Producto 2</h2>
     <br>
     <h1>El precio del producto 2 son 2 dolares</h1>
     <br>
     <input type="submit" name="Prod2" value="Añadir al carrito">
+    <input type="submit" name="DELProd2" value="Quitar del carrito">
     <br>
     <h2>Producto 3</h2>
     <br>
     <h1>El precio del producto 3 son 3 dolares</h1>
     <br>
     <input type="submit" name="Prod3" value="Añadir al carrito">
+    <input type="submit" name="DELProd3" value="Quitar del carrito">
     <br>
     <input type="submit" name="sumbit" value="Pagar">
     </form>
@@ -41,13 +44,37 @@
         $cont1 = $cont1 + 1;
         echo("Vas a comprar {$cont1} unidades del producto 1");
     }
+    if(isset($_POST['DELProd1'])){
+        $cont1 = $cont1 - 1;
+        if ($cont1<=0){
+            echo ("No hay unidades de este producto en el carrito");
+        } else { 
+            echo("Se elimino una unidad del producto 1 del carrito, actualmente hay {$cont1} unidades en el carrito");
+    }
+    }
     if(isset($_POST['Prod2'])){
         $cont2 = $cont2 + 1;
         echo("Vas a comprar {$cont2} unidades del producto 2");
     }
+    if(isset($_POST['DELProd2'])){
+        $cont2 = $cont2 - 1;
+        if ($cont2<=0){
+            echo ("No hay unidades de este producto en el carrito");
+        } else { 
+            echo("Se elimino una unidad del producto 1 del carrito, actualmente hay {$cont2} unidades en el carrito");
+    }
+    }
     if(isset($_POST['Prod3'])){
         $cont3 = $cont3 + 1;
         echo("Vas a comprar {$cont3} unidades del producto 3");
+    }
+    if(isset($_POST['DELProd3'])){
+        $cont3 = $cont3 - 1;
+        if ($cont3<=0){
+            echo ("No hay unidades de este producto en el carrito");
+        } else { 
+            echo("Se elimino una unidad del producto 1 del carrito, actualmente hay {$cont3} unidades en el carrito");
+    }
     }
     if(isset($_POST['sumbit'])){
         $resultado = ($cont1*$cost1) + ($cont2*$cost2) + ($cont3*$cost3);
