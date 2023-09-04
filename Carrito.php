@@ -33,7 +33,6 @@
     </form>
     <h2> El valor a pagar es: </h2>
     <?php
-    include ('DatosCarrito');
     $cont1 = 0;
     $cost1 = 1;
     $cont2 = 0;
