@@ -6,43 +6,81 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Ingresa los datos para tu calculadora</h1>
+    <h1>Seleciona los productos que quieres comprar</h1>
     <form method="post" action="<?php $_SERVER['PHP_SELF'];?>">
-        Valor en pesos:
-        <input type="text" name="mon" required>
-        <br>
-        <h1>Seleciona la moneda a la que quieras pasar</h1>
-        <select name="Cambio">
-            <option value="Dolar">Dolar</option>
-            <option value="Euro">Euro</option>
-            <option value="Rupia India">Rupia India</option>
-        </select> 
-        <br>
-        <h1>Esta pagina esa los siguientes valores</h1>
-        <br>
-        <h1>1 Dolar = 4063.06 Pesos</h1>
-        <br>
-        <h1>1 Euro = 4426.09 Pesos</h1>
-        <br>
-        <h1>1 Rupia India = 48.89 Pesos</h1>
-        <br>
-        <input type="submit" name="sumbit" value="Enviar">
+    <h2>Producto 1</h2>
+    <br>
+    <h1>El precio del producto 1 es 1 dolar</h1>
+    <br>
+    <input type="submit" name="Prod1" value="Añadir al carrito">
+    <input type="submit" name="DELProd1" value="Quitar del carrito">
+    <br>
+    <h2>Producto 2</h2>
+    <br>
+    <h1>El precio del producto 2 son 2 dolares</h1>
+    <br>
+    <input type="submit" name="Prod2" value="Añadir al carrito">
+    <input type="submit" name="DELProd2" value="Quitar del carrito">
+    <br>
+    <h2>Producto 3</h2>
+    <br>
+    <h1>El precio del producto 3 son 3 dolares</h1>
+    <br>
+    <input type="submit" name="Prod3" value="Añadir al carrito">
+    <input type="submit" name="DELProd3" value="Quitar del carrito">
+    <br>
+    <input type="submit" name="sumbit" value="Pagar">
     </form>
-    <h2> El resultado en tu moneda escogida es: </h2>
+    <h2> El valor a pagar es: </h2>
     <?php
-    require_once('DatosCarrito.php');
-    if(isset($_POST['sumbit'])){
-        $mon = $_POST['mon'];
-        $Cambio = $_POST['Cambio'];
-        $resultado = 0;
-        if ($Cambio=="Dolar"){
-            $resultado = $mon/4063.06;
-        }else if($Cambio=="Euro"){
-            $resultado = $mon/4426.09;
-        }else{
-            $resultado = $mon/48.89;
+    include ('DatosCarrito');
+    $cont1 = 0;
+    $cost1 = 1;
+    $cont2 = 0;
+    $cost2 = 2;
+    $cont3 = 0;
+    $cost3 = 3;
+    $resultado = 0;
+    if(isset($_POST['Prod1'])){
+        $cont1 = $cont1 + 1;
+        echo("Vas a comprar {$cont1} unidades del producto 1");
     }
-    echo($resultado);
+    if(isset($_POST['DELProd1'])){
+        $cont1 = $cont1 - 1;
+        if ($cont1<=0){
+            echo ("No hay unidades de este producto en el carrito");
+        } else { 
+            echo("Se elimino una unidad del producto 1 del carrito, actualmente hay {$cont1} unidades en el carrito");
+    }
+    }
+    if(isset($_POST['Prod2'])){
+        $cont2 = $cont2 + 1;
+        echo("Vas a comprar {$cont2} unidades del producto 2");
+    }
+    if(isset($_POST['DELProd2'])){
+        $cont2 = $cont2 - 1;
+        if ($cont2<=0){
+            echo ("No hay unidades de este producto en el carrito");
+        } else { 
+            echo("Se elimino una unidad del producto 1 del carrito, actualmente hay {$cont2} unidades en el carrito");
+    }
+    }
+    if(isset($_POST['Prod3'])){
+        $cont3 = $cont3 + 1;
+        echo("Vas a comprar {$cont3} unidades del producto 3");
+    }
+    if(isset($_POST['DELProd3'])){
+        $cont3 = $cont3 - 1;
+        if ($cont3<=0){
+            echo ("No hay unidades de este producto en el carrito");
+        } else { 
+            echo("Se elimino una unidad del producto 1 del carrito, actualmente hay {$cont3} unidades en el carrito");
+    }
+    }
+    if(isset($_POST['sumbit'])){
+        $resultado = ($cont1*$cost1) + ($cont2*$cost2) + ($cont3*$cost3);
+        echo("El valor a pagar es: ");
+        echo ($resultado);
     }
     ?>
 </body>
